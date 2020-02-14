@@ -9,18 +9,28 @@ const messageTwo = document.querySelector('#message-2')
 
 //messageOne.textContent = 'From JavaScript'
 
-fetch('http://localhost:3000/stock').then((response)=> {
-  response.json().then((data) => {
-    if (data.error) {
-      messageOne.textContent = data.error
+weatherForm.addEventListener('submit', (e) => {
 
-    }
-    else {
-      messageOne.textContent = data
-    }
+  e.preventDefault()
+
+  const location = search.value
+
+  console.log(location)
+  messageOne.textContent ='Loading...'
+  messageTwo
+
+  fetch('http://localhost:3000/stock').then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        messageOne.textContent = data.error
+
+      }
+      else {
+        messageOne.textContent = data
+      }
+    })
   })
 })
-
 /*weatherForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
